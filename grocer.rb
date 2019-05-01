@@ -24,38 +24,17 @@ def apply_coupons(cart, coupons)
       itemNum = coupon[:num]
       newItemName = "#{itemName} W/COUPON"
       
-      def apply_coupons(cart, coupons)
-  cart
-  coupons.each do |coupon|
-    itemName = coupon[:item]
-    if cart.keys.include?(itemName)
-      itemPrice = coupon[:cost]
-      itemNum = coupon[:num]
-      newItemName = "#{itemName} W/COUPON"
-      
-      
-      cart[itemName][:count] -= itemNum
-      #New Cart
-      if cart[newItemName].nil?
-        cart[newItemName] = {}
-        cart[newItemName][:count] = 0
+      if (cart[itemName][:count] - itemNum) >= 0
+        cart[itemName][:count] -= itemNum
+        #New Cart
+        if cart[newItemName].nil?
+          cart[newItemName] = {}
+          cart[newItemName][:count] = 0
+        end
+        cart[newItemName][:price] = itemPrice
+        cart[newItemName][:clearance] = cart[itemName][:clearance]
+        cart[newItemName][:count] += 1
       end
-      cart[newItemName][:price] = itemPrice
-      cart[newItemName][:clearance] = cart[itemName][:clearance]
-      cart[newItemName][:count] += 1
-    end
-  end
-  cart
-end
-      cart[itemName][:count] -= itemNum
-      #New Cart
-      if cart[newItemName].nil?
-        cart[newItemName] = {}
-        cart[newItemName][:count] = 0
-      end
-      cart[newItemName][:price] = itemPrice
-      cart[newItemName][:clearance] = cart[itemName][:clearance]
-      cart[newItemName][:count] += 1
     end
   end
   cart
