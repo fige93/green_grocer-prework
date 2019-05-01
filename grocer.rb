@@ -23,8 +23,9 @@ def apply_coupons(cart, coupons)
       itemPrice = coupon[:cost]
       itemNum = coupon[:num]
       newItemName = "#{itemName} W/COUPON"
-      cart[itemName][:count] -= itemNum
       
+      
+      cart[itemName][:count] -= itemNum
       #New Cart
       if cart[newItemName].nil?
         cart[newItemName] = {}
